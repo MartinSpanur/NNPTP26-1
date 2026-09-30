@@ -1,0 +1,102 @@
+﻿using System.Collections.Generic;
+
+namespace NNPTPZ1
+{
+
+    namespace Mathematics
+    {
+        public class Polynomial
+        {
+            /// <summary>
+            /// Coefficients
+            /// </summary>
+            public List<ComplexNumber> Coefficients { get; set; }
+
+            /// <summary>
+            /// Constructor
+            /// </summary>
+            public Polynomial() => Coefficients = new List<ComplexNumber>();
+
+            public void Add(ComplexNumber coe) =>
+                Coefficients.Add(coe);
+
+            /// <summary>
+            /// Derives this polynomial and creates new one
+            /// </summary>
+            /// <returns>Derivated polynomial</returns>
+            public Polynomial Derive()
+            {
+                Polynomial p = new Polynomial();
+                for (int q = 1; q < Coefficients.Count; q++)
+                {
+                    p.Coefficients.Add(Coefficients[q].Multiply(new ComplexNumber() { Real = q }));
+                }
+
+                return p;
+            }
+
+            /// <summary>
+            /// Evaluates polynomial at given point
+            /// </summary>
+            /// <param name="x">point of evaluation</param>
+            /// <returns>y</returns>
+            public ComplexNumber Eval(double x)
+            {
+                var y = Eval(new ComplexNumber() { Real = x, Imaginary = 0 });
+                return y;
+            }
+
+            /// <summary>
+            /// Evaluates polynomial at given point
+            /// </summary>
+            /// <param name="x">point of evaluation</param>
+            /// <returns>y</returns>
+            public ComplexNumber Eval(ComplexNumber x)
+            {
+                ComplexNumber s = ComplexNumber.Zero;
+                for (int i = 0; i < Coefficients.Count; i++)
+                {
+                    ComplexNumber coef = Coefficients[i];
+                    ComplexNumber bx = x;
+                    int power = i;
+
+                    if (i > 0)
+                    {
+                        for (int j = 0; j < power - 1; j++)
+                            bx = bx.Multiply(x);
+
+                        coef = coef.Multiply(bx);
+                    }
+
+                    s = s.Add(coef);
+                }
+
+                return s;
+            }
+
+            /// <summary>
+            /// ToString
+            /// </summary>
+            /// <returns>String repr of polynomial</returns>
+            public override string ToString()
+            {
+                string outputRepresentation = "";
+
+                for (int i = 0; i < Coefficients.Count; i++)
+                {
+                    outputRepresentation += Coefficients[i];
+                    if (i > 0)
+                    {
+                        for (int j = 0; j < i; j++)
+                        {
+                            outputRepresentation += "x";
+                        }
+                    }
+
+                    if ((i + 1) < Coefficients.Count) outputRepresentation += " + "; // NOTE: Feel like formatting one line like this is alright al long as it is short
+                }
+                return outputRepresentation;
+            }
+        }
+    }
+}
