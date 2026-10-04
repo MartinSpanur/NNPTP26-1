@@ -18,8 +18,7 @@ namespace NNPTPZ1
         {
             int maxRootId = 0;
 
-            // TODO: cleanup!!!
-            // for every pixel in image...
+            // Color for every pixel in image
             for (int i = 0; i < arguments.Height; i++)
             {
                 for (int j = 0; j < arguments.Width; j++)

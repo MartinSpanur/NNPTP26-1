@@ -80,7 +80,7 @@ namespace NNPTPZ1
                 return new ComplexNumber()
                 {
                     Real = numerator.Real / denominator,
-                    Imaginary = numerator.Imaginary / denominator // TODO: check if cast to double makes sense (depending on the type of numerator.Imaginary)
+                    Imaginary = numerator.Imaginary / denominator
                 };
             }
         }

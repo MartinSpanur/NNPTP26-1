@@ -77,7 +77,7 @@ namespace NNPTPZ1
             /// <summary>
             /// ToString
             /// </summary>
-            /// <returns>String repr of polynomial</returns>
+            /// <returns>String repr of polynomial
             public override string ToString()
             {
                 string outputRepresentation = "";
