@@ -6,8 +6,12 @@
     using System;
     using System.Globalization;
 
+    // Struct made to hold program arguments
     public struct ProgramArguments
     {
+
+        public static readonly long ARGUMENT_LENGTH = 7;
+
         public double Width { get; }
         public double Height { get; }
         public double XMin { get; }
@@ -19,12 +23,13 @@
         public double XStep => (XMax - XMin) / Width;
         public double YStep => (YMax - YMin) / Height;
 
+        // Constructor parses arguments and throws if number of arguments or type of any argument is wrong
         public ProgramArguments(string[] args)
         {
             if (args == null)
                 throw new ArgumentNullException(nameof(args));
 
-            if (args.Length != 7)
+            if (args.Length != ARGUMENT_LENGTH)
             {
                 throw new ArgumentException(
                     $"Expected 7 arguments, but got {args.Length}. " +
@@ -57,8 +62,7 @@
                     CultureInfo.InvariantCulture,
                     out double result))
             {
-                throw new FormatException(
-                    $"Argument '{argumentName}' must be a valid number, but was '{value}'.");
+                throw new FormatException($"Argument '{argumentName}' must be a valid number, but was '{value}'.");
             }
 
             return result;
