@@ -27,9 +27,9 @@ namespace NNPTPZ1
             public Polynomial Derive()
             {
                 Polynomial p = new Polynomial();
-                for (int q = 1; q < Coefficients.Count; q++)
+                for (int i = 1; i < Coefficients.Count; i++)
                 {
-                    p.Coefficients.Add(Coefficients[q].Multiply(new ComplexNumber() { Real = q }));
+                    p.Coefficients.Add(Coefficients[i].Multiply(new ComplexNumber() { Real = i }));
                 }
 
                 return p;

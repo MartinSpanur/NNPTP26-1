@@ -10,6 +10,12 @@ namespace NNPTPZ1
             public double Real { get; set; }
             public double Imaginary { get; set; } // TODO: changed from float to double => why there was float?
 
+            public readonly static ComplexNumber Zero = new ComplexNumber()
+            {
+                Real = 0,
+                Imaginary = 0
+            };
+
             public override bool Equals(object obj)
             {
                 if (obj is ComplexNumber)
@@ -19,12 +25,6 @@ namespace NNPTPZ1
                 }
                 return base.Equals(obj);
             }
-
-            public readonly static ComplexNumber Zero = new ComplexNumber()
-            {
-                Real = 0,
-                Imaginary = 0
-            };
 
             public ComplexNumber Multiply(ComplexNumber otherNumber)
             {
